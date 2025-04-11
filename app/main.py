@@ -24,15 +24,15 @@ async def fetch_wallet_info(address: str, db: Annotated[AsyncSession, Depends(ge
     return data
 
 
-skipArg = Query(default=0, ge=0)
-limitArg = Query(default=10, ge=1, le=100)
+skip_arg = Query(default=0, ge=0)
+limit_arg = Query(default=10, ge=1, le=100)
 
 
 @app.get("/query-history")
 async def get_query_history(
     db: Annotated[AsyncSession, Depends(get_db)],
-    skip: int = skipArg,
-    limit: int = limitArg,
+    skip: int = skip_arg,
+    limit: int = limit_arg,
 ):
     stmt = select(WalletQuery).offset(skip).limit(limit)
     result = await db.execute(stmt)
