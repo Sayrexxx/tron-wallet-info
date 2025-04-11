@@ -7,6 +7,8 @@ from app.main import app
 from app.database import AsyncSessionLocal, Base, engine
 from app.database import WalletQuery
 
+headers = {"Accept": "application/json", "Content-Type": "application/json"}
+
 
 @pytest.fixture(scope="module", autouse=True)
 async def setup_database():
@@ -24,7 +26,7 @@ def client():
 @pytest.mark.asyncio
 async def test_fetch_wallet_info_success(client: TestClient):
     address = "test_success_addr_tc"
-    response = client.post(f"/wallet-info?address={address}")
+    response = client.post(f"/wallet-info?address={address}", headers=headers)
 
     assert response.status_code == 200
     assert response.json().get("balance_trx") is not None
@@ -33,7 +35,7 @@ async def test_fetch_wallet_info_success(client: TestClient):
 @pytest.mark.asyncio
 async def test_fetch_wallet_info_db_entry(client: TestClient):
     address = "test_db_entry_addr_tc"
-    response = client.post(f"/wallet-info?address={address}")
+    response = client.post(f"/wallet-info?address={address}", headers=headers)
 
     assert response.status_code == 200
 
