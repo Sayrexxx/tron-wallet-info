@@ -1,7 +1,8 @@
 from sqlalchemy import Column, Integer, String, DateTime
 from sqlalchemy.ext.asyncio import create_async_engine, AsyncSession
-from sqlalchemy.ext.declarative import declarative_base
+from sqlalchemy.orm import declarative_base
 from sqlalchemy.orm import sessionmaker
+from datetime import datetime
 from dotenv import load_dotenv
 import os
 from typing import Any
@@ -23,5 +24,5 @@ Base: Any = declarative_base()
 class WalletQuery(Base):
     __tablename__ = "wallet_queries"
     id = Column(Integer, primary_key=True, index=True)
-    wallet_address = Column(String, index=True)
-    timestamp = Column(DateTime)
+    wallet_address = Column(String, index=True, nullable=False)
+    timestamp = Column(DateTime, default=datetime.now)
