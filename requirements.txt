@@ -1,6 +1,7 @@
 fastapi[standard]>=0.115.12
 uvicorn>=0.31.0
 sqlalchemy>=2.0.40
+sqlalchemy[asyncio]>=2.0.40
 pytest>=8.3.5
 alembic>=1.15.2
 aiohttp>=3.11.16
