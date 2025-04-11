@@ -1,4 +1,5 @@
-from fastapi import FastAPI, Depends
+from fastapi import FastAPI, Depends, Query
+from sqlalchemy.future import select
 from sqlalchemy.ext.asyncio import AsyncSession
 from app.services.tron_service import get_wallet_info
 from app.database import AsyncSessionLocal, WalletQuery
@@ -21,3 +22,19 @@ async def fetch_wallet_info(address: str, db: Annotated[AsyncSession, Depends(ge
     db.add(db_query)
     await db.commit()
     return data
+
+
+skip_arg = Query(default=0, ge=0)
+limit_arg = Query(default=10, ge=1, le=100)
+
+
+@app.get("/query-history")
+async def get_query_history(
+    db: Annotated[AsyncSession, Depends(get_db)],
+    skip: int = skip_arg,
+    limit: int = limit_arg,
+):
+    stmt = select(WalletQuery).offset(skip).limit(limit)
+    result = await db.execute(stmt)
+    queries = result.scalars().all()
+    return queries
