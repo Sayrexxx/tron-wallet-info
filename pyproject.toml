@@ -4,3 +4,6 @@ max-line-length = 88
 [tool.mypy]
 ignore_missing_imports = true
 explicit_package_bases = true
+
+[tool.pytest.ini_options]
+asyncio_mode = "auto"

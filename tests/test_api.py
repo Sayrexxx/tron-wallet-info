@@ -27,7 +27,7 @@ async def test_fetch_wallet_info_success(client: TestClient):
     response = client.post(f"/wallet-info?address={address}")
 
     assert response.status_code == 200
-    assert "balance_trx" in response.json()
+    assert response.json().get("balance_trx") is not None
 
 
 @pytest.mark.asyncio
@@ -44,6 +44,7 @@ async def test_fetch_wallet_info_db_entry(client: TestClient):
 
         assert query_entry is not None
         assert query_entry.wallet_address == address
+        assert query_entry.wallet_address != "null_key"
 
 
 @pytest.mark.asyncio
