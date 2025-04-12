@@ -239,4 +239,4 @@ alembic upgrade head
 
 ## License
 
-Distributed under the MIT License. See [LICENSE](https://github.com/Sayrexxx/mattermost-voting-bot/blob/main/LICENSE) for more information.
+Distributed under the MIT License. See [LICENSE](https://github.com/Sayrexxx/tron-wallet-info/blob/main/LICENSE) for more information.
