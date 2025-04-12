@@ -42,5 +42,5 @@ jobs:
     - name: Run Tests
       env:
         DATABASE_URL: sqlite+aiosqlite:///test_database.db
-        API_KEY: 49e3725b-f829-4916-848b-e368b129865e
+        API_KEY: ${{ secrets.API_KEY }}
       run: pytest
