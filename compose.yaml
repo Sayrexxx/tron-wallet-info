@@ -6,7 +6,7 @@ services:
     volumes:
       - ./sqlite_data:/app/sqlite_data
     environment:
-      - DATABASE_URL=sqlite+aiosqlite:///./test.db
+      - DATABASE_URL=sqlite+aiosqlite:///./queries.db
     command: >
       sh -c "alembic revision --autogenerate -m 'init' || true &&
              alembic upgrade head &&
