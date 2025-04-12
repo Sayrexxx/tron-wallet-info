@@ -36,13 +36,24 @@ _A FastAPI microservice for retrieving Tron wallet information (balance, bandwid
 
 ## Quick Start
 
-### Local Development
-
 1. Clone the repository:
    ```bash
    git clone https://github.com/Sayrexxx/tron-wallet-info.git
    cd tron-wallet-info
    ```
+
+1. Create `.env` file in root directory with api-key for TronGrid API and DATABASE_URL:
+   ```bash
+   touch .env
+   ```
+    Example of .env file:
+    ```.env
+    API_KEY=<your-api-key>
+    DATABASE_URL=sqlite+aiosqlite:///./queries.db
+    ```
+
+### Local Development
+
 1. Set up environment:
    ```bash
    python -m venv venv
@@ -50,6 +61,7 @@ _A FastAPI microservice for retrieving Tron wallet information (balance, bandwid
    # venv\Scripts\activate  # Windows
    pip install -r requirements.txt
    ```
+
 1. Run the server:
    ```bash
    uvicorn app.main:app --reload
