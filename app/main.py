@@ -3,10 +3,19 @@ from sqlalchemy.future import select
 from sqlalchemy.ext.asyncio import AsyncSession
 from app.services.tron_service import get_wallet_info
 from app.database import AsyncSessionLocal, WalletQuery
+from fastapi.openapi.docs import get_swagger_ui_html
 from datetime import datetime
 from typing import Annotated
 
-app = FastAPI()
+app = FastAPI(docs_url=None, redoc_url=None)
+
+
+@app.get("/", include_in_schema=False)
+async def root():
+    return get_swagger_ui_html(
+        openapi_url="/openapi.json",
+        title="API Documentation",
+    )
 
 
 async def get_db() -> AsyncSession:
