@@ -1,0 +1,13 @@
+services:
+  app:
+    build: .
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./sqlite_data:/app/sqlite_data
+    environment:
+      - DATABASE_URL=sqlite+aiosqlite:///./test.db
+    command: >
+      sh -c "alembic revision --autogenerate -m 'init' || true &&
+             alembic upgrade head &&
+             uvicorn app.main:app --host 0.0.0.0 --port 8000"
