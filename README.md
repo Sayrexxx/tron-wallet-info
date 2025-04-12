@@ -209,7 +209,7 @@ alembic upgrade head
         DATABASE_URL: sqlite+aiosqlite:///test_db.sqlite
         API_KEY: ${{ secrets.API_KEY }}
     ```
-    
+
 ### Debugging Tips
 
 1. View Detailed Logs
