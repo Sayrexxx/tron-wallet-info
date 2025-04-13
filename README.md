@@ -179,7 +179,7 @@ curl -X 'GET' \
 mkdir -p sqlite_data && chmod 755 sqlite_data
 ```
 
-1. Migration Problems
+2. Migration Problems
 ```log
     alembic.util.exc.CommandError: Can't locate revision identified by '123abc'
 ```
@@ -190,7 +190,7 @@ alembic revision --autogenerate -m "initial"
 alembic upgrade head
 ```
 
-1. **Tron API** Connection Issues
+3. **Tron API** Connection Issues
 ```log
     tronpy.exc.TronError: Failed to connect to Tron node
 ```
@@ -199,7 +199,7 @@ alembic upgrade head
   - Verify Tron API endpoint in tron_service.py
   - Add retry logic for requests
 
-1. Pre-commit Hooks Failing
+4. Pre-commit Hooks Failing
 ```log
     black....................................................................Failed
 ```
@@ -209,7 +209,7 @@ alembic upgrade head
         isort .
   ```
 
-1. Test Failures in CI
+5. Test Failures in CI
 ```log
     E   AssertionError: Unexpected status code: 500
 ```
@@ -229,22 +229,22 @@ alembic upgrade head
     docker-compose logs -f app
 ```
 
-1. Check Database Contents
+2. Check Database Contents
 ```bash
     sqlite3 sqlite_data/db.sqlite3 "SELECT * FROM wallet_queries LIMIT 5;"
 ```
 
-1. Run Specific Tests
+3. Run Specific Tests
 ```bash
     pytest tests/test_api.py::test_wallet_info -v
 ```
 
-1. Verify API Responses
+4. Verify API Responses
 ```bash
     curl -v "http://localhost:8000/wallet-info?address=TEST_ADDRESS"
 ```
 
-1. Reset Test Environment
+5. Reset Test Environment
 ```bash
     docker-compose down -v && docker-compose up --build
 ```
