@@ -22,7 +22,7 @@ _A FastAPI microservice for retrieving Tron wallet information (balance, bandwid
 
 - **Wallet Information**: Get TRX balance, bandwidth, and energy for any Tron address
 - **Query History**: Track all wallet lookup requests with pagination
-- **Automated Documentation**: Built-in Swagger UI at `/docs`
+- **Automated Documentation**: Built-in Swagger UI at `/`
 - **CI/CD**: GitHub Actions for testing and pre-commit checks
 - **Containerized**: Ready for Docker deployment
 
