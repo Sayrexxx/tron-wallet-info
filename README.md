@@ -196,7 +196,7 @@ alembic upgrade head
 ```
 - Solution:
   - Check your internet connection
-  - Verify Tron API endpoint in tron_service.py
+  - Verify Tron API endpoint in `tron_service.py`
   - Add retry logic for requests
 
 4. Pre-commit Hooks Failing
